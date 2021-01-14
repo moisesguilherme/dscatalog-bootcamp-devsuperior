@@ -2,10 +2,26 @@ package com.devsuperior.dscatalog.entities;
 
 import java.io.Serializable;
 
+//javax.persistencve é a especificação da JPA
+//O hibernate é a implementação 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+// Tem acesso a entidade somente a camada de serviço e a de dados.
+// O controller não tem acesso a essa camada.
+
+@Entity
+@Table(name = "tb_category")
 public class Category implements Serializable{
 	// Serializable, padrão para que o objeto seja convertido em bytes.
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	                           
 	private Long id;
 	private String name;
 	
