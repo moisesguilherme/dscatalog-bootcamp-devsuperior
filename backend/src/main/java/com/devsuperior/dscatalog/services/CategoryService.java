@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import com.devsuperior.dscatalog.entities.Category;
 import com.devsuperior.dscatalog.repositories.CategoryRepository;
 
-@Service //@component, @repository
+@Service //ou @component, @repository
 public class CategoryService {
 	
 	//Quem gerencia as instâncias dos objetos é o SPRING
