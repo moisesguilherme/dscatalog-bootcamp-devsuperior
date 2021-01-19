@@ -1,14 +1,14 @@
 package com.devsuperior.dscatalog.services;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,11 +31,11 @@ public class CategoryService {
 	//readyOnly, Evita "lock" no bando de dados, não precisa travar o banco só para ler, melhora a performace
 	
 	@Transactional(readOnly = true)   
-	public List<CategoryDTO> findAll() {
-		List<Category> list = repository.findAll();
+	public Page<CategoryDTO> findAllPaged(PageRequest pageRequest) {
+		Page<Category> list = repository.findAll(pageRequest);
 		
 		// map transforma cada elemento
-		return list.stream().map(x -> new CategoryDTO(x)).collect(Collectors.toList());
+		return list.map(x -> new CategoryDTO(x));
 	}
 
 	@Transactional(readOnly = true)
@@ -82,4 +82,5 @@ public class CategoryService {
 			throw new DatabaseException("Integrity violation"); 
 		}
 	}
+
 }
