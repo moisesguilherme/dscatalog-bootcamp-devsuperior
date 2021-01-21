@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import com.devsuperior.dscatalog.entities.Category;
 
 //Implementação da JPA
+
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long>{
 		
