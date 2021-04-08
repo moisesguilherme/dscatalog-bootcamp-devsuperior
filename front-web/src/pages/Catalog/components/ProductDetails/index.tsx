@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ReactComponent as ArrowIcon } from 'core/assets/images/arrow.svg';
-import { ReactComponent as ProductImage } from 'core/assets/images/product.svg';
 import ProductPrice from 'core/components/ProductPrice';
 import { Product } from 'core/types/product';
 import { makeRequest } from 'core/utils/request';
@@ -17,8 +16,6 @@ const ProductDetails = () => {
     const { productId } = useParams<ParamsType>();
     const [product, setProduct] = useState<Product>();
     const [isLoading, setIsLoading] = useState(false);
-
-    console.log(isLoading);
 
     useEffect(() => {
         setIsLoading(true);
