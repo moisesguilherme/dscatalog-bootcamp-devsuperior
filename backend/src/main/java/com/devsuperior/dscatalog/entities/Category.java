@@ -2,17 +2,13 @@ package com.devsuperior.dscatalog.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
-import javax.persistence.Column;
+import javax.persistence.*;
 //javax.persistencve é a especificação da JPA
-//O hibernate é a implementação 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
-import javax.persistence.Table;
+//O hibernate é a implementação
+
 
 // Tem acesso a entidade somente a camada de serviço e a de dados.
 // O controller não tem acesso a essa camada.
@@ -34,7 +30,10 @@ public class Category implements Serializable{
 
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")  
 	private Instant updatedAt;
-	
+
+	@ManyToMany(mappedBy = "categories" )
+	private Set<Product> products = new HashSet<>();
+
 	public Category() {
 		
 	}
@@ -78,7 +77,15 @@ public class Category implements Serializable{
 	public void preUpdate() {
 		updatedAt = Instant.now();
 	}
-	
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
