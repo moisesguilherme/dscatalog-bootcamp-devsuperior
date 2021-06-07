@@ -78,10 +78,6 @@ public class Category implements Serializable{
 		updatedAt = Instant.now();
 	}
 
-	public void setProducts(Set<Product> products) {
-		this.products = products;
-	}
-
 	public Set<Product> getProducts() {
 		return products;
 	}
