@@ -15,7 +15,6 @@ import com.devsuperior.dscatalog.repositories.UserRepository;
 
 @Component
 public class JwtTokenEnhancer implements TokenEnhancer {
-
 	
 	@Autowired
 	        

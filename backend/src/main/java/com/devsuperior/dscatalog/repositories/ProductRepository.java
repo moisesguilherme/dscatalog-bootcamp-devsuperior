@@ -18,7 +18,11 @@ public interface ProductRepository extends JpaRepository<Product, Long>{
 	//quando é um para um isso funciona, mas como no caso é para muitos, não
 	@Query("SELECT DISTINCT obj FROM Product obj INNER JOIN obj.categories cats WHERE "
 			+ "(COALESCE(:categories) IS NULL OR cats IN :categories) AND "
-			+ "(:name = '' OR LOWER(obj.name) LIKE LOWER(CONCAT('%',:name,'%'))) ")
+			+ "(LOWER(obj.name) LIKE LOWER(CONCAT('%',:name,'%'))) ")
 	Page<Product> find(List<Category> categories, String name, Pageable pageable);
+	
+	//JOIN FETCH busca o produto juntamente com os objetos da categoria (não funciona com pagina, somente lista)
+	@Query("SELECT obj FROM Product obj JOIN FETCH obj.categories WHERE obj IN :products")
+	List<Product> findProductsWithCategories(List<Product> products);
 		
 }

@@ -37,6 +37,7 @@ public class CategoryService {
 		// map transforma cada elemento
 		return list.map(x -> new CategoryDTO(x));
 	}
+	
 
 	@Transactional(readOnly = true)
 	public CategoryDTO findById(Long id) {
