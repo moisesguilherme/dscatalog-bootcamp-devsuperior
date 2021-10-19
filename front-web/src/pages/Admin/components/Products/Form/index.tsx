@@ -1,4 +1,4 @@
-import { makeRequest } from 'core/utils/request';
+import { makePriveateRequest} from 'core/utils/request';
 import React, { useState } from 'react';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
@@ -39,10 +39,10 @@ const Form = () => {
             categories: [{id: formData.category}]
         }
         
-        makeRequest({ url: '/products', method: 'POST', data: playload })
+        makePriveateRequest({ url: '/products', method: 'POST', data: playload })
             .then(() => {
                 setFormData({ name:'', category: '', price: '', description: ''});
-            }); 
+            })
     }
     
     return (
