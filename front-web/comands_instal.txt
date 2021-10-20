@@ -1,3 +1,0 @@
-#query string
-yarn add qs
-yarn add @types/qs
