@@ -14,18 +14,18 @@ const PrivateRoute = ({ children, path, allowedRoutes }: Props) => {
       <Route
         path={path}
         render={({ location }) => {
-          if(!isAuthenticated){
+          if(!isAuthenticated()){
             return (
               <Redirect
                 to={{
-                  pathname: "/admin/auth/login",
+                  pathname: "/auth/login",
                   state: { from: location }
                 }}
               />
             )
           } else if (isAuthenticated() && !isAllowedByRole(allowedRoutes)) {
             return (
-              <Redirect to={{ pathname: "/products" }} />
+              <Redirect to={{ pathname: "/admin" }} />
             )
           }
 

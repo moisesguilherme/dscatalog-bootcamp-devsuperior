@@ -23,7 +23,7 @@ axios.interceptors.response.use(function (response) {
   }, function (error) {
 
     if(error.response.status === 401){
-       history.push('/admin/auth/login');
+       history.push('/auth/login');
     }
     return Promise.reject(error);
   });
@@ -42,7 +42,6 @@ export const makeRequest = ({ method = 'GET', url, data, params, headers }:Reque
 
 export const makePriveateRequest = ({ method = 'GET', url, data, params }: RequestParams) => {
     const sessionData = getSessionData();
-
     const headers = {
         'Authorization': `Bearer ${sessionData.access_token}`
     }

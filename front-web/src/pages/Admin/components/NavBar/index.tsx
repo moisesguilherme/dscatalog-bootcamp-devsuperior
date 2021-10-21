@@ -1,9 +1,12 @@
+import React  from 'react';
 import { isAllowedByRole } from 'core/utils/auth';
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink  } from 'react-router-dom';
+
+
 import './styles.scss';
 
 const Navbar = () => (
+
     <nav className="admin-nav-container">
         <ul>
             <li>
