@@ -1,91 +1,57 @@
 import { makePriveateRequest} from 'core/utils/request';
-import React, { useState } from 'react';
+import React from 'react';
+import { useForm } from 'react-hook-form';
 import BaseForm from '../../BaseForm';
 import './styles.scss';
 
 type FormState = {
     name: string;
     price: string;
-    category: string;
     description: string;
+    imageUrl: string;
 }
 
-type FormEvent = React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>;
-
 const Form = () => {
+    const { register, handleSubmit } = useForm<FormState>();
 
-    const [formData, setFormData] = useState<FormState>({
-        name: '',
-        price: '',
-        category: '1',
-        description: ''
-    });
-    
-
-
-    const handleOnChange = (event: FormEvent) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        
-        setFormData(data => ({...data, [name]: value}));
-    }
-
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-
-        const playload = {
-            ...formData,
-            imgUrl : 'https://compass-ssl.xbox.com/assets/83/53/83534a33-0998-43dc-915a-4ec0a686d679.jpg?n=10202018_Panes-3-up-1400_Hero-SX_570x570.jpg',
-            categories: [{id: formData.category}]
-        }
-        
-        makePriveateRequest({ url: '/products', method: 'POST', data: playload })
-            .then(() => {
-                setFormData({ name:'', category: '', price: '', description: ''});
-            })
+    const onSubmit = (data: FormState) => {
+       makePriveateRequest({ url: '/products', method: 'POST', data });
     }
     
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(onSubmit)}>
             <BaseForm title="cadastrar um produto">
             <div className="row">
                     <div className="col-6">
+                        <div>
+                            <input                             
+                                {...register("name", { required: 'Campo obrigatório'})} 
+                                type="text" 
+                                className="form-control margin-bottom-30 input-base" 
+                                placeholder="Nome do produto"
+                            />
+                        </div>
+                        
                         <input 
-                            value={formData.name}
-                            name="name"
-                            type="text" 
-                            className="form-control mb-5" 
-                            onChange={handleOnChange}
-                            placeholder="Nome do produto"
-                        />
-
-                        <select 
-                            value={formData.category}
-                            className="form-control mb-5" 
-                            onChange={handleOnChange}
-                            name="category"
-                        >
-
-                            <option value="1">Livros</option>
-                            <option value="3">Computadores</option>
-                            <option value="2">Eletrônicos</option>
-                        </select>
-
-                        <input 
-                            value={formData.price}
-                            name="price"
-                            type="text" 
-                            className="form-control mb-5" 
-                            onChange={handleOnChange}
+                            {...register("price", { required: 'Campo obrigatório'})} 
+                            type="number" 
+                            className="form-control margin-bottom-30 input-base" 
                             placeholder="Preço"
                         />
+
+                        <input 
+                            {...register("imageUrl", { required: 'Campo obrigatório'})} 
+                            type="text" 
+                            className="form-control margin-bottom-30 input-base" 
+                            placeholder="Imagem do produto"
+                        />
+
                     </div>
                     <div className="col-6">
                         <textarea 
-                            name="description" 
-                            value={formData.description}
-                            onChange={handleOnChange}
-                            className="form-control"
+                            {...register("description", { required: 'Campo obrigatório'})} 
+                            className="form-control input-base"
+                            placeholder="Descrição"
                             cols={30} 
                             rows={10} 
                         />
