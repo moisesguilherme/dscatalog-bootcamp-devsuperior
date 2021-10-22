@@ -39,7 +39,7 @@ export const makeRequest = ({ method = 'GET', url, data, params, headers }:Reque
     });
 }
 
-export const makePriveateRequest = ({ method = 'GET', url, data, params }: RequestParams) => {
+export const makePrivateRequest = ({ method = 'GET', url, data, params }: RequestParams) => {
     const sessionData = getSessionData();
     const headers = {
         'Authorization': `Bearer ${sessionData.access_token}`

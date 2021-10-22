@@ -5,3 +5,6 @@ yarn add @types/qs
 #JWT Decode
 yarn add jwt-decode
 yarn add @types/jwt-decode
+
+#react-toastify
+yarn add react-toastify
