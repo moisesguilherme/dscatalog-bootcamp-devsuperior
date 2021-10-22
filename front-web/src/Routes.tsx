@@ -7,7 +7,6 @@ import ProductDetails from './pages/Catalog/components/ProductDetails';
 import Home from './pages/Home';
 import Auth from './pages/Auth';
 import history from './core/utils/history';
-import PrivateRoute from 'core/components/Routes/PrivateRoute';
 
 const Routes = () => (
     <Router history={history}>
