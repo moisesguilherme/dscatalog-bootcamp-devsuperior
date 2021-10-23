@@ -9,7 +9,7 @@ const Products = () => {
         <div>
             <Switch>
                 <Route path="/admin/products" exact>
-                    <List/>
+                    <List />
                 </Route>
                 <Route path="/admin/products/create">
                     <Form/>
