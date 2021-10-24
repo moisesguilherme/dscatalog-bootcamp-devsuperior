@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makePrivateRequest} from 'core/utils/request';
 import { toast } from 'react-toastify';
 import { useForm } from 'react-hook-form';
 import BaseForm from '../../BaseForm';
-import { useHistory } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 import './styles.scss';
+
 
 type FormState = {
     name: string;
@@ -14,12 +15,37 @@ type FormState = {
     imgUrl: string;
 }
 
+type ParamsType = {
+    productId: string;
+}
+
+
 const Form = () => {    
-    const { register, handleSubmit, formState: { errors } } = useForm<FormState>();
+    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormState>();
     const history = useHistory();
-   
+    const { productId } = useParams<ParamsType>();
+    const isEditing = productId !== 'create';
+    const formTitle =  isEditing ? "Editar produto" : "cadastrar um produto";
+       
+    useEffect(() => {
+      if(isEditing){
+        makePrivateRequest({ url: `/products/${productId}` })
+        .then(response => {
+          setValue('name', response.data.name);
+          setValue('price', response.data.price);
+          setValue('description', response.data.description);
+          setValue('imgUrl', response.data.imgUrl);
+        })
+      }
+    }, [productId, isEditing, setValue]);
+        
+    
     const onSubmit = (data: FormState) => {
-        makePrivateRequest({ url: '/products', method: 'POST', data })
+        makePrivateRequest({
+                url: isEditing ? `/products/${productId}`  : '/products',
+                method: isEditing ? 'PUT' : 'POST', 
+                data 
+            })
             .then(() => {
                 toast.info("Produto salvo com sucesso!");
                 history.push('/admin/products');
@@ -31,7 +57,9 @@ const Form = () => {
     
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <BaseForm title="cadastrar um produto">
+            <BaseForm 
+                title={formTitle}
+            >
             <div className="row">
                     <div className="col-6">
                         <div className="margin-bottom-30">
