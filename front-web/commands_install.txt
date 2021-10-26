@@ -1,3 +1,5 @@
+Just for typescript @types
+
 #query string
 yarn add qs
 yarn add @types/qs
@@ -8,3 +10,7 @@ yarn add @types/jwt-decode
 
 #react-toastify
 yarn add react-toastify
+
+#react-select
+yarn add react-select
+yarn add @types/react-select

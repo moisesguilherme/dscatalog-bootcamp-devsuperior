@@ -12,9 +12,6 @@ const List = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [activePage, setActivePage] = useState(0);
     const history = useHistory();
-
-
-    console.log(productsResponse);
     
 
     const getProducts = useCallback(() => {

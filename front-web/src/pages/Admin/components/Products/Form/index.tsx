@@ -1,18 +1,20 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useForm, Controller } from 'react-hook-form';
+import { useHistory, useParams } from 'react-router-dom';
 import { makePrivateRequest} from 'core/utils/request';
 import { toast } from 'react-toastify';
-import { useForm } from 'react-hook-form';
+import { Category } from 'core/types/product';
 import BaseForm from '../../BaseForm';
-import { useHistory, useParams } from 'react-router';
-
+import Select from 'react-select'
 import './styles.scss';
-
 
 type FormState = {
     name: string;
     price: string;
     description: string;
     imgUrl: string;
+    categories: Category[];
+    iceCreamType: {label: string; value: string };
 }
 
 type ParamsType = {
@@ -21,12 +23,17 @@ type ParamsType = {
 
 
 const Form = () => {    
-    const { register, handleSubmit, setValue, formState: { errors } } = useForm<FormState>();
+    const { register, handleSubmit, setValue, control, formState: { errors } } = useForm<FormState>();
     const history = useHistory();
     const { productId } = useParams<ParamsType>();
+    const [isLoadingCategories, setIsLoadingCategories] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [categoriesEdit, setCategoriesEdit] = useState<Category[]>([]);
     const isEditing = productId !== 'create';
     const formTitle =  isEditing ? "Editar produto" : "cadastrar um produto";
-       
+          
+
+
     useEffect(() => {
       if(isEditing){
         makePrivateRequest({ url: `/products/${productId}` })
@@ -35,9 +42,19 @@ const Form = () => {
           setValue('price', response.data.price);
           setValue('description', response.data.description);
           setValue('imgUrl', response.data.imgUrl);
+          setValue('categories', response.data.categories);
         })
+
+        
       }
-    }, [productId, isEditing, setValue]);
+    }, [productId, isEditing, setValue, categories]);
+
+    useEffect(() => {
+        setIsLoadingCategories(true);
+        makePrivateRequest({url: '/categories'})
+            .then(response => setCategories(response.data.content))
+            .finally(() => setIsLoadingCategories(false));
+    }, []);
         
     
     const onSubmit = (data: FormState) => {
@@ -79,6 +96,31 @@ const Form = () => {
                                 </div>
                             )}
                         </div>
+                        <div className="margin-bottom-30">                            
+              
+                            <Controller
+                                    name="categories"
+                                    control={control}
+                                    render={({ field: {onChange, value, name, ref} }) =>  <Select
+                                        getOptionLabel={(option: Category) => option.name}
+                                        getOptionValue={(option: Category) => String(option.id)}
+                                        classNamePrefix="categories-select" 
+                                        placeholder="Categorias"
+                                        isLoading={isLoadingCategories}
+                                        options={categories}
+                                        value={value}
+                                        onChange={(value) => onChange([...value])}        
+                                        isMulti
+                                    />}
+                            />
+
+                            {errors.categories && (
+                                <div className="invalid-feedback d-block">
+                                    Campo obrigatório
+                                </div>
+                            )}
+
+                        </div>    
                         <div className="margin-bottom-30">
                             <input 
                                 {...register("price", { required: 'Campo obrigatório'})} 

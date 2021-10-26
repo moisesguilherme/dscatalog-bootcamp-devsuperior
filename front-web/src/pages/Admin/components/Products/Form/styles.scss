@@ -1,0 +1,16 @@
+.categories-select__control {
+    height: 50px;
+    border-radius: 10px !important;
+    border: 1px solid #E1E1E1;
+}
+
+.categories-select__indicator-separator {
+    display: none;
+}
+
+.categories-select__placeholder{
+
+    &::placeholder {
+        color: #9E9E9E;
+      }
+}
