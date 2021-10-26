@@ -6,15 +6,15 @@ import { toast } from 'react-toastify';
 import { Category } from 'core/types/product';
 import BaseForm from '../../BaseForm';
 import Select from 'react-select'
+import PriceField from './PriceField';
 import './styles.scss';
 
-type FormState = {
+export type FormState = {
     name: string;
     price: string;
     description: string;
     imgUrl: string;
     categories: Category[];
-    iceCreamType: {label: string; value: string };
 }
 
 type ParamsType = {
@@ -28,7 +28,6 @@ const Form = () => {
     const { productId } = useParams<ParamsType>();
     const [isLoadingCategories, setIsLoadingCategories] = useState(false);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [categoriesEdit, setCategoriesEdit] = useState<Category[]>([]);
     const isEditing = productId !== 'create';
     const formTitle =  isEditing ? "Editar produto" : "cadastrar um produto";
           
@@ -96,11 +95,11 @@ const Form = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="margin-bottom-30">                            
-              
+                        <div className="margin-bottom-30">                                          
                             <Controller
                                     name="categories"
                                     control={control}
+                                    rules={({ required: true})}
                                     render={({ field: {onChange, value, name, ref} }) =>  <Select
                                         getOptionLabel={(option: Category) => option.name}
                                         getOptionValue={(option: Category) => String(option.id)}
@@ -109,11 +108,11 @@ const Form = () => {
                                         isLoading={isLoadingCategories}
                                         options={categories}
                                         value={value}
-                                        onChange={(value) => onChange([...value])}        
+                                        onChange={onChange}        
                                         isMulti
-                                    />}
+                                    />                                    
+                                }
                             />
-
                             {errors.categories && (
                                 <div className="invalid-feedback d-block">
                                     Campo obrigatório
@@ -122,12 +121,7 @@ const Form = () => {
 
                         </div>    
                         <div className="margin-bottom-30">
-                            <input 
-                                {...register("price", { required: 'Campo obrigatório'})} 
-                                type="number" 
-                                className="form-control input-base" 
-                                placeholder="Preço"
-                            />
+                            <PriceField control={control} />
                             {errors.price && (
                                 <div className="invalid-feedback d-block">
                                     {errors.price.message}
