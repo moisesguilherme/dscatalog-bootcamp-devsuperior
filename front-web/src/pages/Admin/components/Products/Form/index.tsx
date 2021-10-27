@@ -8,6 +8,7 @@ import BaseForm from '../../BaseForm';
 import Select from 'react-select'
 import PriceField from './PriceField';
 import './styles.scss';
+import ImageUpload from '../ImageUpload';
 
 export type FormState = {
     name: string;
@@ -129,17 +130,7 @@ const Form = () => {
                             )}
                         </div>    
                         <div className="margin-bottom-30">
-                            <input 
-                                {...register("imgUrl", { required: 'Campo obrigatório'})} 
-                                type="text" 
-                                className="form-control input-base" 
-                                placeholder="Imagem do produto"
-                            />
-                            {errors.imgUrl && (
-                                <div className="invalid-feedback d-block">
-                                    {errors.imgUrl.message}
-                                </div>
-                            )}
+                            <ImageUpload />    
                         </div>                            
                     </div>
                     <div className="col-6">
