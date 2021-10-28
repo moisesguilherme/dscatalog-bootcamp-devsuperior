@@ -3,7 +3,6 @@ import { ReactComponent as UploadPlaceholder } from 'core/assets/images/upload-p
 import './styles.scss';
 import { makePrivateRequest } from 'core/utils/request';
 import { toast } from 'react-toastify';
-import { voidTypeAnnotation } from '@babel/types';
 
 type Props = {
     onUploadSuccess: (imgUrl: string) => void;
