@@ -34,8 +34,6 @@ const Form = () => {
 
     const isEditing = productId !== 'create';
     const formTitle =  isEditing ? "Editar produto" : "cadastrar um produto";
-          
-
 
     useEffect(() => {
       if(isEditing){
@@ -65,7 +63,7 @@ const Form = () => {
         
         const payload = {
             ...data,
-            imgUrl: uploadedImgUrl
+            imgUrl: uploadedImgUrl || productImgUrl
         }
 
         makePrivateRequest({
@@ -124,6 +122,7 @@ const Form = () => {
                                         options={categories}
                                         value={value}
                                         onChange={onChange}        
+                                        inputId="categories"
                                         isMulti
                                     />                                    
                                 }
