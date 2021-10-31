@@ -76,11 +76,10 @@ public class ProductService {
 			copyDtoToEntity(dto, entity);
 			
 			//Adicionou provisório para o front funcionar ao inserir sem categoria
-			if(entity.getCategories().size() == 0) {
+			/*if(entity.getCategories().size() == 0) {
 				Category cat = categoryRepository.getOne(1L);
 				entity.getCategories().add(cat);
-			}
-						
+			}*/
 			entity = repository.save(entity);		
 			return new ProductDTO(entity);
 	   }catch(EntityNotFoundException e) {
