@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { ProductsResponse } from 'core/types/product';
-import { makePrivateRequest } from 'core/utils/request';
+import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import { toast } from 'react-toastify';
 import Pagination from 'core/components/Pagination';
 import CardLoader from '../Loaders/ProductCardLoader';
@@ -22,7 +22,7 @@ const List = () => {
             orderBy: 'id'
         }
         setIsLoading(true);
-        makePrivateRequest({ url: '/products', params})
+        makeRequest({ url: '/products', params})
             .then(response => setProductsResponse(response.data))
             .finally(() => {
                 setIsLoading(false);                

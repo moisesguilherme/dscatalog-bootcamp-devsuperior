@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory, useParams } from 'react-router-dom';
-import { makePrivateRequest} from 'core/utils/request';
+import { makePrivateRequest, makeRequest} from 'core/utils/request';
 import { toast } from 'react-toastify';
 import { Category } from 'core/types/product';
 import BaseForm from '../../BaseForm';
@@ -37,7 +37,7 @@ const Form = () => {
 
     useEffect(() => {
       if(isEditing){
-        makePrivateRequest({ url: `/products/${productId}` })
+        makeRequest({ url: `/products/${productId}` })
         .then(response => {
           setValue('name', response.data.name);
           setValue('price', response.data.price);
@@ -53,7 +53,7 @@ const Form = () => {
 
     useEffect(() => {
         setIsLoadingCategories(true);
-        makePrivateRequest({url: '/categories'})
+        makeRequest({url: '/categories'})
             .then(response => setCategories(response.data.content))
             .finally(() => setIsLoadingCategories(false));
     }, []);

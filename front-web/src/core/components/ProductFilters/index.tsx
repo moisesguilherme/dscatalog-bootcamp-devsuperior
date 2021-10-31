@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ReactComponent as SearchIcon } from 'core/assets/images/search-icon.svg';
 import Select from 'react-select';
-import { makePrivateRequest } from 'core/utils/request';
+import { makeRequest } from 'core/utils/request';
 import { Category } from 'core/types/product';
 import './styles.scss'
 
@@ -25,7 +25,7 @@ const ProductFilters = ({
     
     useEffect(() => {
         setIsLoadingCategories(true);
-        makePrivateRequest({url: '/categories'})
+        makeRequest({url: '/categories'})
             .then(response => setCategories(response.data.content))
             .finally(() => setIsLoadingCategories(false));
     }, []);

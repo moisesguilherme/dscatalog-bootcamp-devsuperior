@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { Category, ProductsResponse } from 'core/types/product';
-import { makePrivateRequest } from 'core/utils/request';
+import { makePrivateRequest, makeRequest } from 'core/utils/request';
 import ProductFilters from 'core/components/ProductFilters';
 import ProductCard from './components/ProductCard';
 import ProductCardLoader from './components/Loaders/ProductCardLoader';
@@ -26,7 +26,7 @@ const Catalog = () => {
         }
 
         setIsLoading(true);
-        makePrivateRequest({ url: '/products', params})
+        makeRequest({ url: '/products', params})
             .then(response => setProductsResponse(response.data))
             .finally(() => {
                 setIsLoading(false);
