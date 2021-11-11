@@ -12,8 +12,7 @@ type Props = {
 const Card = ({ product, onRemove }: Props) => {
     return (
         <div className="card-base product-card-admin">
-             <div className="row">
-                 <div className="col-2 text-center border-right py-3">
+                 <div className="text-center border-right py-3">
                         <img 
                             src={product.imgUrl} 
                             alt={product.name}
@@ -21,7 +20,7 @@ const Card = ({ product, onRemove }: Props) => {
                          />
                  </div>
                  <div className="col-7 py-3">
-                    <h3 className="product-card-name-admin">
+                    <h3 className="card-content product-card-name-admin">
                         {product.name}
                     </h3>
                     <ProductPrice price={product.price}/>
@@ -48,7 +47,7 @@ const Card = ({ product, onRemove }: Props) => {
                        EXCLUIR
                     </button>
                  </div>
-             </div>
+             
         </div>
     )
 }
