@@ -18,3 +18,17 @@
     text-align: right;
 }
 
+@media (max-width: 768px){
+    .admin-base-form {
+        width: 100%;
+    }
+}
+
+
+@media(max-width: 576px){
+    .admin-base-form{
+        width: 100%;
+        flex-direction: column;
+    }
+
+}

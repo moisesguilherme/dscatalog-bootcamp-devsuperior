@@ -32,7 +32,6 @@ const ProductDetails = () => {
                     <h1 className="text-goback">voltar</h1>
                 </Link>
                 <div className="product-details-info">
-                    <div className="col-6 pr-5">
                         {isLoading ? <ProductInfoLoader /> : (
                             <>
                                 <div className="product-details-card text-center">
@@ -49,9 +48,7 @@ const ProductDetails = () => {
                                     {product?.price && <ProductPrice price={product?.price} />}
                                 </div>
                             </>
-                        )}
-
-                    </div>
+                        )}                    
                     <div className="product-details-card">
                         {isLoading ? <ProductDescriptionLoader /> : (
                             <>

@@ -9,7 +9,6 @@
     flex-direction: row;
     align-items:  center;
     justify-content: space-between;
-    border: 1px solid red;
 }
 
 .catalog-title{
@@ -40,5 +39,11 @@
     .catalog-products {
         grid-template-columns: repeat(auto-fill, 200px);
         grid-gap: 33px 10px;
+    }
+}
+
+@media (max-width: 576px){
+    .catalog-products{
+       grid-template-columns: repeat(auto-fill, 100%);
     }
 }

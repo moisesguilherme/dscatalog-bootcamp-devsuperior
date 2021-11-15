@@ -7,7 +7,7 @@ import './styles.scss';
 
 const Home = () => (
     <div className="home-container">
-        <div className="row home-content card-base border-radius-20">
+        <div className="home-content card-base border-radius-20">
             <div className="home-text"> 
                 <h1 className="text-title">Conheça o melhor <br/>catálogo de produtos</h1>
                 <p className="text-subtitle">
@@ -17,7 +17,7 @@ const Home = () => (
                     <ButtonIcon text="inicie agora a sua busca"/>
                 </Link>               
             </div>
-            <div className="col-6">
+            <div className="home-image">
                     <MainImage className="main-image" />
             </div>
         </div>
