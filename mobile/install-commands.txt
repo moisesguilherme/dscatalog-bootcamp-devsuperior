@@ -1,7 +1,9 @@
 expo init -t expo-template-blank-typescript
 
 yarn add @react-navigation/native
-yarn add @react-navigation/native-stackD
+yarn add @react-navigation/native-stack
+
+npm install @react-navigation/stack@^5.x
 expo install react-native-screens react-native-safe-area-context
 
 yarn add axios

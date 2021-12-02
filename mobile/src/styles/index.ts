@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native'
-//aaa
+import { StyleSheet, Dimensions } from 'react-native'
+import { color } from 'react-native-reanimated';
+
+const deviceWidth = Dimensions.get('window').width;
+
 const colors = {
     white: "#FFFFFF",
     lightGray: "#F2F2F2",
@@ -76,12 +79,13 @@ const theme = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
+        //zIndex: -1,
     },
      card: {
         width: "100%",
         height: "100%",
         backgroundColor: colors.white,
-        elevation: 4,
+        //elevation: 4,
         borderRadius: 20, 
         shadowColor: colors.black,
         shadowOffset: {
@@ -125,7 +129,7 @@ const theme = StyleSheet.create({
         width: "100%",
         backgroundColor: colors.white,
         borderRadius: 10,
-        elevation: 4,
+        //elevation: 4, 
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -159,7 +163,7 @@ const theme = StyleSheet.create({
         height: 60,
         backgroundColor: colors.white,
         borderRadius: 10,
-        elevation: 4,
+        //elevation: 4, 
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -186,7 +190,7 @@ const theme = StyleSheet.create({
         width: "100%",
         height: "100%",
         backgroundColor: colors.white,
-        elevation: 4,
+        //elevation: 4,
         borderRadius: 20, 
         shadowColor: colors.black,
         shadowOffset: {
@@ -223,8 +227,38 @@ const theme = StyleSheet.create({
         borderRadius: 10,
         borderColor: colors.lightGray,
     },
-
-
 });
 
-export { colors, theme, text };
+
+const nav = StyleSheet.create({
+    leftText:{
+        color: colors.white,
+        fontWeight: "bold",
+        marginLeft: 10,
+    },
+    drawer: {
+        marginRight: 20,
+    },
+    options: {
+        width: deviceWidth,
+        height: 120,
+        backgroundColor: colors.primary,
+        //marginTop: 125,
+        paddingTop: 30,
+        marginRight: -20,
+        padding: 20,
+        justifyContent: "space-between"
+    },
+    option: {
+        paddingVertical: 5,
+    },
+    textOption: {
+        color: colors.white,
+        textTransform: "uppercase",
+    },
+    textActive: {
+        fontWeight: "bold",
+    }
+});
+
+export { colors, theme, text, nav };

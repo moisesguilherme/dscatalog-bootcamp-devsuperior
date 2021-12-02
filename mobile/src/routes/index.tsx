@@ -1,9 +1,14 @@
 import React from 'react'
-import { createNativeStackNavigator } from  '@react-navigation/native-stack'
+import { createStackNavigator } from  '@react-navigation/stack';
+import { Home, Catalog, ProductDetails} from '../pages';
+import { NavBar } from "../components";
+import { Text } from "react-native";
 
-const Stack = createNativeStackNavigator();
+import { colors, nav } from '../styles';
 
-import {Home, Catalog, ProductDetails} from '../pages'
+const Stack = createStackNavigator();
+
+const HeaderText: React.FC = () => <Text style={nav.leftText}>DS Catalog</Text>
 
 
 export type RootStackParamList = {
@@ -14,11 +19,19 @@ export type RootStackParamList = {
   Feed: { sort: 'latest' | 'top' } | undefined;
 };
 
-//const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 const Routes: React.FC = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            screenOptions={{
+                headerTitle: " ",
+                headerStyle: {                   
+                    backgroundColor: colors.primary,
+                },
+                headerLeft: () => <HeaderText />,
+                headerRight: () => <NavBar />
+            }}
+        >
             <Stack.Screen 
                 name="Home" 
                 component={Home}
