@@ -1,6 +1,6 @@
 import React from 'react'
 import { createStackNavigator } from  '@react-navigation/stack';
-import { Home, Catalog, ProductDetails} from '../pages';
+import { Home, Catalog, ProductDetails, Login} from '../pages';
 import { NavBar } from "../components";
 import { Text } from "react-native";
 
@@ -29,7 +29,7 @@ const Routes: React.FC = () => {
                     backgroundColor: colors.primary,
                 },
                 headerLeft: () => <HeaderText />,
-                headerRight: () => <NavBar />
+                headerRight: () => <NavBar/>
             }}
         >
             <Stack.Screen 
@@ -43,6 +43,10 @@ const Routes: React.FC = () => {
             <Stack.Screen 
                 name="ProductDetails" 
                 component={ProductDetails}
+            />
+            <Stack.Screen 
+                name="Login" 
+                component={Login}
             />
         </Stack.Navigator>
     )

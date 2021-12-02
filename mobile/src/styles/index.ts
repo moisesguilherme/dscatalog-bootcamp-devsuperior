@@ -2,6 +2,8 @@ import { StyleSheet, Dimensions } from 'react-native'
 import { color } from 'react-native-reanimated';
 
 const deviceWidth = Dimensions.get('window').width;
+const deviceHeight = Dimensions.get('window').height;
+
 
 const colors = {
     white: "#FFFFFF",
@@ -243,8 +245,7 @@ const nav = StyleSheet.create({
         width: deviceWidth,
         height: 120,
         backgroundColor: colors.primary,
-        //marginTop: 125,
-        paddingTop: 30,
+        marginTop: -20,
         marginRight: -20,
         padding: 20,
         justifyContent: "space-between"

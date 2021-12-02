@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableOpacity, Image, View, Text } from "react-native";
 
-import { nav } from '../styles';
+import { nav, colors } from '../styles';
 
 import menu from '../assets/menu.png';
+import { HeaderStyleInterpolators } from '@react-navigation/stack';
 
 
 const NavBar: React.FC = () => {
@@ -13,14 +14,22 @@ const NavBar: React.FC = () => {
     const navigation = useNavigation();
     const route = useRoute();
 
+    useEffect(() => {
+        changeHeader();
+    }, [show])
+
     function navigate(path: any) {
-        
 
         if (path) {
             setShow(false);
             navigation.navigate(path);
         }
         setShow(false);
+    }
+
+    function changeHeader(){       
+        const height = show ? 120 : 70;
+        navigation.setOptions({headerStyle: {backgroundColor: colors.primary, height: height}});
     }
 
     return (
@@ -35,7 +44,8 @@ const NavBar: React.FC = () => {
                     <View style={nav.options}>
                         <TouchableOpacity 
                             style={nav.option} 
-                            onPress={() => navigate("Home")}>
+                            onPress={() => navigate("Home")}
+                        >
                             <Text
                                 style={[nav.textOption,
                                 route.name === "Home" ? nav.textActive : null,
@@ -56,7 +66,10 @@ const NavBar: React.FC = () => {
                         </TouchableOpacity>
 
                         <TouchableOpacity 
-                            style={nav.option}>
+                            style={nav.option}
+                            onPress={() => navigate("Login")}
+                            >
+
                             <Text 
                                 style={[nav.textOption,
                                 route.name === "ADM" ? nav.textActive : null,
