@@ -15,8 +15,15 @@ const NavBar: React.FC = () => {
     const route = useRoute();
 
     useEffect(() => {
-        changeHeader();
+        changeHeaderHeight();
     }, [show])
+
+    function changeHeaderHeight(){       
+        const height = show ? 120 : 70;
+        navigation.setOptions({
+            headerStyle: {backgroundColor: colors.primary, height: height}
+        });
+    }
 
     function navigate(path: any) {
 
@@ -27,10 +34,6 @@ const NavBar: React.FC = () => {
         setShow(false);
     }
 
-    function changeHeader(){       
-        const height = show ? 120 : 70;
-        navigation.setOptions({headerStyle: {backgroundColor: colors.primary, height: height}});
-    }
 
     return (
         <TouchableOpacity

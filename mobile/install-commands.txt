@@ -8,5 +8,7 @@ expo install react-native-screens react-native-safe-area-context
 
 yarn add axios
 
+yarn add query-string
+
 
 
