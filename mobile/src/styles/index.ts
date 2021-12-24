@@ -88,6 +88,12 @@ const theme = StyleSheet.create({
         padding: 20,
         //zIndex: -1,
     },
+    eyes:{
+
+    },
+    buttonTextContainer:{
+
+    },
      card: {
         width: "100%",
         height: "100%",

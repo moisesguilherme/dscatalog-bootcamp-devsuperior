@@ -10,5 +10,5 @@ yarn add axios
 
 yarn add query-string
 
-
+expo install @react-native-async-storage/async-storage
 

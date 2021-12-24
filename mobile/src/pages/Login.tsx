@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, TextInput } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { text, theme } from "../styles";
@@ -6,19 +7,28 @@ import { text, theme } from "../styles";
 import eyesOpened from "../assets/eyes-opened.png"
 import eyesClosed from "../assets/eyes-closed.png"
 import arrow from "../assets/arrow.png"
-import { login } from '../services/auth';
+import { isAuthenticated, login } from '../services/auth';
+import { NavigationContainer } from '@react-navigation/native';
 
 const Login: React.FC = () => {
+    const navigation = useNavigation();
     const [hidePassword, setHidePassord] = useState(true);
+    const [userFetchData, setUserFechData] = useState({});
     const [userInfo, setUserInfo] = useState({
         username: "",
         password: ""
     });
 
 
+    useEffect(() => {
+        isAuthenticated();
+    },[]);
+
+
     async function handleLogin() {
         const data = await login(userInfo);
-        console.warn(data);
+        setUserFechData(data);
+        navigation.navigate("Dashboard");
     }
 
 
