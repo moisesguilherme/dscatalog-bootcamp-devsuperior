@@ -3,7 +3,7 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import { TouchableOpacity, Image, View, Text } from "react-native";
 import { doLogout, isAuthenticated } from '../services/auth';
 
-import { nav, colors } from '../styles';
+import { nav, colors, text } from '../styles';
 
 import menu from '../assets/menu.png';
 
@@ -54,9 +54,12 @@ const NavBar: React.FC = () => {
         <>
             {authenticated ? (
                 <TouchableOpacity
+                    style={nav.logoutBtn}
                     onPress={() => logout()}
                 >
-                    <Text>Sair</Text>
+                    <Text 
+                        style={text.logoutText}
+                    >Sair</Text>
                 </TouchableOpacity>
             ) : (
                 <TouchableOpacity

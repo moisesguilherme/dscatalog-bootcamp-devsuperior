@@ -19,12 +19,6 @@ const Login: React.FC = () => {
         password: ""
     });
 
-
-    useEffect(() => {
-        isAuthenticated();
-    },[]);
-
-
     async function handleLogin() {
         const data = await login(userInfo);
         setUserFechData(data);
