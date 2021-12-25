@@ -86,7 +86,7 @@ const theme = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         padding: 20,
-        //zIndex: -1,
+        zIndex: -1,
     },
     eyes:{
 
@@ -98,7 +98,7 @@ const theme = StyleSheet.create({
         width: "100%",
         height: "100%",
         backgroundColor: colors.white,
-        elevation: 4,
+        //elevation: 4,
         borderRadius: 20, 
         shadowColor: colors.black,
         shadowOffset: {
@@ -142,7 +142,7 @@ const theme = StyleSheet.create({
         width: "100%",
         backgroundColor: colors.white,
         borderRadius: 10,
-        elevation: 4, 
+        //elevation: 4, 
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -176,7 +176,7 @@ const theme = StyleSheet.create({
         height: 60,
         backgroundColor: colors.white,
         borderRadius: 10,
-        elevation: 4, 
+        //elevation: 4, 
         shadowColor: colors.black,
         shadowOffset: {
             width: 0,
@@ -203,7 +203,7 @@ const theme = StyleSheet.create({
         width: "100%",
         height: "100%",
         backgroundColor: colors.white,
-        elevation: 4,
+        //elevation: 4,
         borderRadius: 20, 
         shadowColor: colors.black,
         shadowOffset: {
@@ -245,7 +245,7 @@ const theme = StyleSheet.create({
         width: "100%",
         height: "100%",
         backgroundColor: colors.white,
-        elevation: 4,
+        //elevation: 4,
         borderRadius: 20, 
         shadowColor: colors.black,
         shadowOffset: {
@@ -287,7 +287,8 @@ const nav = StyleSheet.create({
         marginLeft: 10,
     },
     drawer: {
-        marginRight: 20,
+        marginRight: 20, 
+        zIndex: 10,
     },
     options: {
         width: deviceWidth,
